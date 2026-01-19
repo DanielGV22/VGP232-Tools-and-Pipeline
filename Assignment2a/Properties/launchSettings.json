@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Assignment2a": {
+      "commandName": "Project",
+      "commandLineArgs": "-i data2.csv -o output.csv -c -s Rarity\r\n",
+      "workingDirectory": "$(TargetDir)"
+    }
+  }
+}
