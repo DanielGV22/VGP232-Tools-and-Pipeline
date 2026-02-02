@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Assignment2b": {
+      "commandName": "Project",
+      "commandLineArgs": "-i weapons.xml -o weapons.csv -s BaseAttack\r\n",
+      "workingDirectory": "$(TargetDir)"
+    }
+  }
+}
