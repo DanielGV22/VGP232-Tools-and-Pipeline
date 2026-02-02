@@ -1,8 +1,9 @@
-﻿using Microsoft.Win32;
-using System.Windows;
+﻿using Assignment2b;
+using Microsoft.Win32;
 using System;
-using Assignment2b;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 
 namespace Assignment2c
 {
@@ -163,6 +164,32 @@ namespace Assignment2c
 
             ApplySortIfAny();
             WeaponListBox.Items.Refresh();
+        }
+
+        private void WeaponListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (WeaponListBox.SelectedItem is not Weapon weapon ||
+                string.IsNullOrWhiteSpace(weapon.Image))
+            {
+                WeaponImage.Source = null;
+                return;
+            }
+
+            try
+            {
+                var bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(weapon.Image, UriKind.Absolute);
+                bitmap.CacheOption = BitmapCacheOption.OnLoad;
+                bitmap.EndInit();
+                bitmap.Freeze(); // WPF stability
+
+                WeaponImage.Source = bitmap;
+            }
+            catch
+            {
+                WeaponImage.Source = null; // invalid URL or unreachable image
+            }
         }
 
         // ---------- Helpers ----------
